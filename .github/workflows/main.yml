@@ -11,13 +11,14 @@ jobs:
       - name: Checkout current repo
         uses: actions/checkout@v4
 
-      - name: Clone source repo
+      - name: Clone source repo (branch NSS-12.5-K6.x-wwan)
         run: |
           git clone --depth=1 --branch NSS-12.5-K6.x-wwan https://github.com/qosmio/nss-packages temp-nss
 
-      - name: Copy contents of 'wwan' folder only (not folder itself)
+      - name: Copy only contents of 'wwan' folder
         run: |
           cp -rf temp-nss/wwan/* .
+          rm -rf temp-nss
 
       - name: Commit and push changes
         run: |
@@ -25,5 +26,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add .
-          git diff --cached --quiet || git commit -m "Sync: copy WWAN files from qosmio/NSS-12.5-K6.x-wwan"
+          git diff --cached --quiet || git commit -m "Sync WWAN: import files from qosmio/NSS-12.5-K6.x-wwan"
           git push
