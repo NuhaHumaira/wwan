@@ -1,13 +1,21 @@
-name: Sync WWAN Files Only
+name: UPDATE WWAN
 
 on:
+  schedule:
+    - cron: '0 19 * * *'  # UTC = 3 AM MYT (UTC+8)
   workflow_dispatch:
 
 jobs:
   sync_wwan:
     runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Kuala_Lumpur
 
     steps:
+      - name: Set timezone to Malaysia
+        run: |
+          sudo timedatectl set-timezone Asia/Kuala_Lumpur || echo "Ignore if not supported"
+
       - name: Checkout current repo
         uses: actions/checkout@v4
 
