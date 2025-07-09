@@ -35,7 +35,6 @@ config interface 'wwan_6'
 ### Firewall etc/config/firewall
 <pre>
   <code>
-    config zone
 config zone
 	option name 'wan'
 	list network 'wwan'
