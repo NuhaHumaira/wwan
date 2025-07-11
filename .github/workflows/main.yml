@@ -2,7 +2,7 @@ name: UPDATE WWAN
 
 on:
  schedule:
-   - cron: '0 2 * * *'  # UTC = 3 AM MYT (UTC+8)
+   - cron: '0 2 * * *' 
  workflow_dispatch:
 
 jobs:
